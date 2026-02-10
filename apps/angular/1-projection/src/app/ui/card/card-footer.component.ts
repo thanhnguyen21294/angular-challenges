@@ -1,14 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-list-item, [appListItem]',
+  selector: 'card-footer, [cardFooter]',
+  standalone: true,
   template: `
     <ng-content></ng-content>
   `,
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'border-grey-300 flex justify-between border px-2 py-1',
-  },
 })
-export class ListItemComponent {}
+export class CardFooterComponent {}
