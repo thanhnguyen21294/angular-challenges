@@ -8,3 +8,24 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.card {
+  .card-item {
+    background: antiquewhite;
+    padding: 8px;
+    margin: 10px;
+    border-radius: 15px;
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.gap-local-4 {
+  gap: 4px;
+}
