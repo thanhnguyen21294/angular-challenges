@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AppPipe } from './name.pipe';
 
 @Component({
   selector: 'app-root',
   template: `
     @for (person of persons; track person) {
-      {{ heavyComputation(person, $index) }}
+      {{ person | name: $index }}
     }
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [AppPipe],
 })
 export class AppComponent {
   persons = ['toto', 'jack'];
-
-  heavyComputation(name: string, index: number) {
-    // very heavy computation
-    return `${name} - ${index}`;
-  }
 }
