@@ -9,17 +9,29 @@ export const userShellRoutes: Route[] = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
-        loadChildren: () =>
+        loadComponent: () =>
           import('@angular-challenges/module-to-standalone/user/home').then(
-            (m) => m.UserHomeModule,
+            (m) => m.UserHomeComponent,
           ),
       },
       {
         path: 'contact',
-        loadChildren: () =>
-          import('@angular-challenges/module-to-standalone/user/contact').then(
-            (m) => m.ContactFeatureModule,
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                '@angular-challenges/module-to-standalone/user/contact'
+              ).then((m) => m.ContactDashboardComponent),
+          },
+          {
+            path: 'create-contact',
+            loadComponent: () =>
+              import(
+                '@angular-challenges/module-to-standalone/user/contact'
+              ).then((m) => m.CreateContactComponent),
+          },
+        ],
       },
     ],
   },

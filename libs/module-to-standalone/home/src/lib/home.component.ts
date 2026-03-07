@@ -1,6 +1,7 @@
 import { TOKEN } from '@angular-challenges/module-to-standalone/core/providers';
 import { AuthorizationService } from '@angular-challenges/module-to-standalone/core/service';
-import { Component, Inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 @Component({
   selector: 'lib-home',
@@ -20,11 +21,10 @@ import { Component, Inject } from '@angular/core';
 
     <section>LoadedToken {{ token }}</section>
   `,
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [AsyncPipe],
 })
 export class HomeComponent {
-  constructor(
-    public authorizeService: AuthorizationService,
-    @Inject(TOKEN) public token: string,
-  ) {}
+  protected authorizeService = inject(AuthorizationService);
+  token = inject(TOKEN);
 }

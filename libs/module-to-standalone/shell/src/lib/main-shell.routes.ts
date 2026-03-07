@@ -2,28 +2,77 @@ import { IsAuthorizedGuard } from '@angular-challenges/module-to-standalone/admi
 import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
   {
     path: 'home',
-    loadChildren: () =>
+    loadComponent: () =>
       import('@angular-challenges/module-to-standalone/home').then(
-        (m) => m.ModuleToStandaloneHomeModule,
+        (m) => m.HomeComponent,
       ),
   },
   {
     path: 'admin',
     canActivate: [IsAuthorizedGuard],
-    loadChildren: () =>
-      import('@angular-challenges/module-to-standalone/admin/feature').then(
-        (m) => m.AdminFeatureModule,
-      ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('@angular-challenges/module-to-standalone/admin/feature').then(
+            (m) => m.DashboardComponent,
+          ),
+      },
+      {
+        path: 'create-user',
+        loadComponent: () =>
+          import('@angular-challenges/module-to-standalone/admin/feature').then(
+            (m) => m.CreateUserComponent,
+          ),
+      },
+    ],
   },
   {
     path: 'user',
-    loadChildren: () =>
+    loadComponent: () =>
       import('@angular-challenges/module-to-standalone/user/shell').then(
-        (m) => m.UserShellModule,
+        (m) => m.UserShellComponent,
       ),
+    children: [
+      {
+        path: 'home',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('@angular-challenges/module-to-standalone/user/home').then(
+                (m) => m.UserHomeComponent,
+              ),
+          },
+        ],
+      },
+      {
+        path: 'contact',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                '@angular-challenges/module-to-standalone/user/contact'
+              ).then((m) => m.ContactDashboardComponent),
+          },
+          {
+            path: 'create-contact',
+            loadComponent: () =>
+              import(
+                '@angular-challenges/module-to-standalone/user/contact'
+              ).then((m) => m.CreateContactComponent),
+          },
+        ],
+      },
+    ],
   },
 
   {

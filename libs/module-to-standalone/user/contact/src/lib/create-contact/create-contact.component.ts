@@ -1,5 +1,5 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'lib-create-contact',
@@ -12,14 +12,7 @@ import { RouterModule } from '@angular/router';
       Back
     </button>
   `,
-  standalone: false,
+  imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateContactComponent {}
-
-@NgModule({
-  imports: [
-    RouterModule.forChild([{ path: '', component: CreateContactComponent }]),
-  ],
-  declarations: [CreateContactComponent],
-})
-export class CreateContactModule {}
