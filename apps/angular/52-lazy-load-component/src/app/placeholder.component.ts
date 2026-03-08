@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-placeholder',
   template: `
-    I'm a placeholder component.
+    <p>I'm a placeholder component.</p>
   `,
   styles: `
     :host {
@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
       height: 50%;
     }
   `,
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class PlaceholderComponent {}

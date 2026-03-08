@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-top',
@@ -13,6 +13,11 @@ import { Component } from '@angular/core';
       height: 50%;
     }
   `,
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
-export class TopComponent {}
+export class TopComponent implements OnInit {
+  ngOnInit() {
+    console.log('@@lazyload');
+  }
+}
