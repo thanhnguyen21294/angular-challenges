@@ -3,12 +3,12 @@ import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../button.component';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  imports: [RouterLink, ButtonComponent],
+  selector: 'app-notfound-dashboard',
+  imports: [ButtonComponent, RouterLink],
   template: `
-    <p>dashboard for Admin works!</p>
+    <p>Not found Dashboard</p>
     <button app-button routerLink="/">Logout</button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminDashboardComponent {}
+export class NotFoundDashboardComponent {}

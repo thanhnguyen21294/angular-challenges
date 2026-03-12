@@ -1,4 +1,10 @@
 export type Role = 'MANAGER' | 'WRITER' | 'READER' | 'CLIENT';
+export const ROLE = {
+  MANAGER: 'MANAGER',
+  WRITER: 'WRITER',
+  CLIENT: 'CLIENT',
+  READER: 'READER',
+};
 
 export interface User {
   name: string;
